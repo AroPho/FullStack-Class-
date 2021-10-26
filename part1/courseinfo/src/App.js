@@ -1,63 +1,67 @@
 import React from 'react'
 
 const App = () => {
-  const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
+  
 
   return (
     <div>
-      <Header course={course} />
-      <Content ex1={exercises1} ex2={exercises2} ex3={exercises3} p1={part1} p2={part2} p3={part3} />
-      <Total exercises1={exercises1} exercises2={exercises2} exercises3={exercises3}/>
+      <Header course={course.name} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts}/>
     </div>
   )
 }
 
-const Header = (input) => {
+const Header = (props) => {
+  console.log(props)
   return (
     <h1>
-      {input.course}
+      {props.course}
     </h1>
   )
 }
 
-const Content = (exercises) => {
+const Content = (parts) => {
+  console.log(parts)
   return (
     <div>
-      {/* <p>
-        {exercises.p1} {exercises.ex1}
-      </p>
-      <p>
-        {exercises.p2} {exercises.ex2}
-      </p>
-      <p>
-        {exercises.p3} {exercises.ex3} */}
-    {/* </p> */}
-      <Part part={exercises.p1} exercises ={exercises.ex1}/>
-      <Part part={exercises.p2} exercises ={exercises.ex2}/>
-      <Part part={exercises.p3} exercises ={exercises.ex3}/>
-
+      <Part part={parts.parts[0]} />
+      <Part part={parts.parts[1]} />
+      <Part part={parts.parts[2]} />
     </div>
   )
 }
 
-const Total = (ex) => {
+const Total = (parts) => {
   return (
     <div>
-      <p>Number of exercises {ex.exercises1 + ex.exercises2 + ex.exercises3}</p>
+      <p>Number of exercises {parts.parts[0].exercises + parts.parts[1].exercises + parts.parts[2].exercises}</p>
     </div>
   )
 }
 
-const Part = (string) => {
+const Part = (part) => {
+  console.log(part)
   return (
     <div>
-      <p>{string.part} {string.exercises}</p>
+      <p>{part.part.name} {part.part.exercises}</p>
     </div>
   )
 }
